@@ -2,12 +2,12 @@
   * file: AESCipher.java
   * author: Timothy Hoang
   * course: MSCS 630
-  * assignment: lab 5
-  * due date: March 15, 2020
+  * assignment: Project
+  * due date: May 10, 2020
   * version: 1
   * 
   * This file contains methods for the full
-  * AES encryption.
+  * AES decryption.
   *
   */
 
@@ -303,6 +303,17 @@ class AESdecipher {
     return outStateHex;
   }
 
+  /**
+    * AESInvNibbleSub
+    *
+    * This function finds the corresponding inverseSBox transformations of the input matrix.
+    * 
+    * Parameters:
+    * inStateHex: The matrix whose elements are to be transformed by the inverseSBox.
+    * 
+    * Return value: The matrix where the elements from the input have been transformed
+    * through the inverseSBox.
+    */
   public static String[][] AESInvNibbleSub(String[][] inStateHex) {
 
     for (int i = 0; i < 4; i++) {
@@ -313,6 +324,18 @@ class AESdecipher {
     return inStateHex;
   }
 
+  /**
+    * AESInvShiftRow
+    *
+    * This function transforms the input state matrix into the output state matrix
+    * with the shift operation.
+    * 
+    * Parameters:
+    * inStateHex: The matrix whose elements are to be shifted opposite to encryption and transformed
+    * into the output state matrix.
+    * 
+    * Return value: The matrix where the elements have been shifted.
+    */
   public static String[][] AESInvShiftRow(String[][] inStateHex) {
 
     String[][] shiftedHex = new String[4][4];
@@ -326,6 +349,18 @@ class AESdecipher {
     return shiftedHex;
   }
 
+  /**
+    * AESInvMixColumn
+    *
+    * This function transforms the input state matrix into the output state matrix
+    * with the mix column operation using multiplication in the Galois Fields.
+    * 
+    * Parameters:
+    * inStateHex: The matrix whose elements are being transformed with the inverse Mix Column operation.
+    * 
+    * Return value: The matrix where the elements from the input have been transformed
+    * with the inverse Mix Column operation.
+    */
   public static String[][] AESInvMixColumn(String[][] inStateHex) {
 
     int M[][] = new int[4][4];
@@ -362,16 +397,16 @@ class AESdecipher {
   }
 
   /**
-    * AES
+    * AESdecrypt
     *
-    * This function performs AES encryption with nibble substitution, row shifting, column mixing,
+    * This function performs AES decryption with inverse nibble substitution, inverserow shifting, inverse column mixing,
     * and adding the key until the last round where you no longer mix the columns.
     * 
     * Parameters:
-    * pTextHex: The hexadecimal plaintext.
+    * pTextHex: The hexadecimal ciphertext.
     * kHex: The hexadecimal key.
     * 
-    * Return value: The AES ciphertext all in uppercase.
+    * Return value: The deciphered ciphertext all in uppercase.
     */
   static String AESdecrypt(String pTextHex, String kHex) {
     String[] secureKeys = aesRoundKeys(kHex);

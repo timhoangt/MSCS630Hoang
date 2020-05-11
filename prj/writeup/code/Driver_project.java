@@ -1,13 +1,14 @@
 /**
-  * file: Driver_lab5.java
+  * file: Driver_project.java
   * author: Timothy Hoang
   * course: MSCS 630
-  * assignment: lab 5
-  * due date: March 15, 2020
+  * assignment: Project
+  * due date: May 10, 2020
   * version: 1
   * 
-  * This file contains method for testing the implementation
-  * by calling aesRoundKeys() in AESCipher.java providing valid data.
+  * This file contains methods for reading a Lexicon, creating a readable password,
+  * taking an input message from the user, enciphering the text with the password,
+  * and deciphering the cipher text with the password.
   *
   */
 
@@ -18,8 +19,36 @@ import java.nio.charset.*;
 import java.math.*;
 import static java.lang.String.format;
 
+/**
+  * Driver_project
+  * 
+  * This class reads a Lexicon, creates a readable password,
+  * takes an input message from the user, enciphers the text with the password,
+  * and deciphers the cipher text with the password.
+  */
 class Driver_project {
   
+  /**
+    * main
+    *
+    * This function reads a Lexicon, creates a readable password,
+    * takes an input message from the user, enciphers the text with the password,
+    * and deciphers the cipher text with the password.
+    * 
+    * Parameters:
+    * args: The title of the Lexicon
+    * text: The 16 chracter message you would like to encrypt
+    *
+    * Return values: 
+    * none
+    *
+    * Printed values:
+    * pass: The randomly genereate password made from the Lexicon and possibly random characters
+    * keyHex: The pass in Hex
+    * hexText: The text you input in Hex
+    * pTextHex: The enciphered hexText
+    * decryptedText: The deciphered pTextHex
+    */
   public static void main(String args[]) throws Exception{
     //The number of characters left
     int leftover = 16;
@@ -57,6 +86,18 @@ class Driver_project {
     System.out.println("deciphered text is " + decryptedText);    
   }
 
+  /**
+    * readFile
+    *
+    * This function reads a Lexicon, stores it in an array, 
+    * and creates a list of that array sorted by word size
+    * 
+    * Parameters:
+    * args: The title of the Lexicon
+    *
+    * Return value: 
+    * stringArr: The array of all of the words in the Lexicon
+    */
   private static String[] readFile(String args) {
     //Store txt file into array.
     String[] stringArr = {""};
@@ -87,7 +128,21 @@ class Driver_project {
     return stringArr;
   }
 
-
+  /**
+    * englishPass
+    *
+    * This function populates the passwrod with random words from the Lexicon
+    * and fills in the rest if need be.
+    * 
+    * Parameters:
+    * map: the map of words arranged by word size
+    * leftover: the size that the password needs to be
+    * lengthMin: the size of the smallest word in the map
+    * lengthMax: the size of the largst word in the map
+    *
+    * Return value: 
+    * pass: the password created from the Lexicon
+    */
   private static String englishPass(Map<Integer, List<String>> map, int leftover, int lengthMin, int lengthMax) {
     String pass = "";
     String word = "";
@@ -100,11 +155,12 @@ class Driver_project {
         word = getWord(map, leftover, lengthMin, lengthMax);
       }
       
-      //Else if the smallest word is bigger than the amount of character left
+      //Else if the smallest word is bigger than the amount of character left put in random characters
       else if (lengthMin > leftover){
         word = fillIn(leftover);
       }
 
+      //Add it to the password and compute the characters needed
       pass = pass.concat(word);
       leftover = leftover - word.length();
 
@@ -112,6 +168,21 @@ class Driver_project {
     return pass;
   }
 
+  /**
+    * getWord
+    *
+    * This function chooses a random word taken from the Lexicon given the amount of 
+    * characters needed and sends it to englishPass to be added to the password
+    * 
+    * Parameters:
+    * map: the map of words arranged by word size
+    * leftover: the size that the password needs to be
+    * lengthMin: the size of the smallest word in the map
+    * lengthMax: the size of the largest word in the map
+    *
+    * Return value: 
+    * word: the word taken from the Lexicon to be added to the password
+    */
   private static String getWord(Map<Integer, List<String>> map, int leftover, int lengthMin, int lengthMax) {
     //Get array of keys
     Set<Integer> keys = map.keySet();
@@ -119,7 +190,7 @@ class Driver_project {
     int currentKey = -1;
     int rnd = -1;
     
-    //Get random key between the mimum word length and the number of characters left
+    //Get random key between the minimum word length and the number of characters left
     while (rnd < 0 || rnd > keysArr.length-1){
       rnd = new Random().nextInt(leftover);
       if(rnd <= 0) {
@@ -141,6 +212,16 @@ class Driver_project {
     return word;
   }
 
+  /**
+    * fillIn
+    *
+    * This function creates a random string of letters and numbers to be added to the password
+    * 
+    * Parameters:
+    * leftover: the size that the password needs to be complete
+    *
+    * Return value: A random string of letters and numbers to be added to the password
+    */
   private static String fillIn(int leftover) {
     // length is bounded by 256 Character 
     byte[] array = new byte[256]; 
@@ -165,7 +246,16 @@ class Driver_project {
     return r.toString();
   }
 
-  //Converts the String to Hex
+  /**
+    * toHex
+    *
+    * This function transforms characters in UTF_8 to Hex values
+    * 
+    * Parameters:
+    * pass: the password in UTF_8
+    *
+    * Return value: The pass in Hex
+    */
   private static String toHex(String pass){
     return String.format("%032x", new BigInteger(1, pass.getBytes(StandardCharsets.UTF_8)));
   }

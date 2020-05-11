@@ -2,8 +2,8 @@
   * file: AESCipher.java
   * author: Timothy Hoang
   * course: MSCS 630
-  * assignment: lab 5
-  * due date: March 15, 2020
+  * assignment: Project
+  * due date: May 10, 2020
   * version: 1
   * 
   * This file contains methods for the full

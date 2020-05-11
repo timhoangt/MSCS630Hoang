@@ -1,13 +1,13 @@
 /**
-  * file: Driver_lab5.java
+  * file: test.java
   * author: Timothy Hoang
   * course: MSCS 630
-  * assignment: lab 5
-  * due date: March 15, 2020
+  * assignment: Project
+  * due date: May 10, 2020
   * version: 1
   * 
   * This file contains method for testing the implementation
-  * by calling aesRoundKeys() in AESCipher.java providing valid data.
+  * by calling InvNibbleSub(), InvShiftRow(), and InvMicColumn() in AESdecipher.java providing valid data.
   *
   */
 
@@ -18,9 +18,24 @@ import java.nio.charset.*;
 import java.math.*;
 import static java.lang.String.format;
 
+/**
+  * test
+  * 
+  * This class pulls initial matrices through the new methods in AESdecipher.java
+  * to see if they perform properly or not. It will print out the transformed matrices.
+  */
 class test {
   
-  public static void main(String args[]) throws Exception{
+  /**
+    * main
+    *
+    * This functiontpulls initial matrices through the new methods in AESdecipher.java
+    * to see if they perform properly or not
+    * 
+    * There are no parameters or return values as it is sinply for testing functions.
+    * 
+    */
+  public static void main() throws Exception{
     int i;
     int j;
 
@@ -89,16 +104,5 @@ class test {
       }
       System.out.println(); 
     }
-    
-    
-
-
-    // Display the elements of the matrices 
-    
-    
-
-    
-
-    
   }
 }
