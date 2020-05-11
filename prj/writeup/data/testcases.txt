@@ -1,0 +1,30 @@
+The original elements of the matrix are
+63  EB  9F  A0  
+C0  2F  93  92  
+AB  30  AF  C7  
+20  CB  2B  A2  
+The result of InvNibbleSub() is
+00  3c  6e  47  
+1f  4e  22  74  
+0e  08  1b  31  
+54  59  0b  1a  
+The original elements of the matrix are
+63  EB  9F  A0  
+2F  93  92  C0  
+AF  C7  AB  30  
+A2  20  CB  2B  
+The result of InvShiftRow() is
+63  EB  9F  A0  
+C0  2F  93  92  
+AB  30  AF  C7  
+20  CB  2B  A2  
+The original elements of the matrix are
+BA  84  E8  1B  
+75  A4  8D  40  
+F4  8D  06  7D  
+7A  32  0E  5D  
+The result of InvMixColumn() is
+63  EB  9F  A0  
+2F  93  92  C0  
+AF  C7  AB  30  
+A2  20  CB  2B 
