@@ -1,0 +1,5 @@
+key: whendoesbillsing
+Key hex: 7768656e646f657362696c6c73696e67
+Plaintext: billsingsatseven
+Plaintext hex: 62696c6c73696e67736174736576656e
+Ciphertext: 3334905404177FA3FF2DD007C9BFEF01

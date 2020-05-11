@@ -1,0 +1,5 @@
+key: decodenameplease
+Key hex: 6465636f64656e616d65706c65617365
+Plaintext: hellomynameistim
+Plaintext hex: 68656C6C6f6D796E616D65697374696D
+Ciphertext: EA30A9A85742147988A8BC6FF31825EE
